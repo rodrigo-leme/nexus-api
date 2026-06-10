@@ -21,10 +21,7 @@ New-Item -ItemType Directory -Path $DataDir -Force | Out-Null
 if (-not (Test-Path "$DataDir\contatos.json")) {
     Set-Content -Path "$DataDir\contatos.json" -Value "[]" -Encoding UTF8
 }
-$Acl  = Get-Acl $DataDir
-$Rule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "Modify", "ContainerInherit,ObjectInherit", "None", "Allow")
-$Acl.AddAccessRule($Rule)
-Set-Acl $DataDir $Acl
+icacls $DataDir /grant "IUSR:(OI)(CI)M" /grant "IIS_IUSRS:(OI)(CI)M" | Out-Null
 
 # ---------- Criar o site no IIS ----------
 if (Get-Website -Name $SiteName -ErrorAction SilentlyContinue) {
@@ -32,10 +29,6 @@ if (Get-Website -Name $SiteName -ErrorAction SilentlyContinue) {
 }
 New-Website -Name $SiteName -PhysicalPath $SiteRoot -Port 80 -HostHeader "spacecode.internal"
 New-WebBinding -Name $SiteName -Protocol http -Port 80 -HostHeader "www.spacecode.internal"
-
-# Habilitar ASP classico e configurar pagina padrao
-Set-WebConfigurationProperty -Filter "system.webServer/asp" -PSPath "IIS:\Sites\$SiteName" -Name "enableParentPaths" -Value $true -ErrorAction SilentlyContinue
-Add-WebConfigurationProperty -Filter "system.webServer/defaultDocument/files" -PSPath "IIS:\Sites\$SiteName" -Name "." -Value @{value="index.html"} -ErrorAction SilentlyContinue
 
 Start-Website -Name $SiteName
 Write-Host "Site '$SiteName' publicado em http://spacecode.internal" -ForegroundColor Green

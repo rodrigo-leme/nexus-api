@@ -44,8 +44,20 @@ If fso.FileExists(caminho) Then
 Else
     conteudo = "[]"
 End If
+If Len(conteudo) > 0 And AscW(Left(conteudo, 1)) = 65279 Then conteudo = Mid(conteudo, 2)  ' remove BOM
+conteudo = Replace(Replace(Replace(conteudo, vbCr, ""), vbLf, ""), vbTab, "")
 conteudo = Trim(conteudo)
-If conteudo = "" Then conteudo = "[]"
+If conteudo = "" Or conteudo = "[]" Then
+    conteudo = "[]"
+Else
+    ' Relê preservando a formatação original
+    stream.Open
+    stream.LoadFromFile caminho
+    conteudo = stream.ReadText
+    stream.Close
+    If Len(conteudo) > 0 And AscW(Left(conteudo, 1)) = 65279 Then conteudo = Mid(conteudo, 2)
+    conteudo = Trim(conteudo)
+End If
 
 novoItem = "{""nome"": """ & JsonEscape(nome) & """, " & _
            """sobrenome"": """ & JsonEscape(sobrenome) & """, " & _
