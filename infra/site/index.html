@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Code LTDA — Código Além da Órbita</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <nav>
+            <span class="logo">SPACE<span class="accent">CODE</span></span>
+            <div class="nav-links">
+                <a href="#sobre">Quem Somos</a>
+                <a href="#devs">Nossos Devs</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </nav>
+        <div class="hero-content">
+            <h1>SPACE CODE <span class="accent">LTDA</span></h1>
+            <p class="tagline">Código além da órbita.</p>
+            <p>A primeira software house com réplica exata de sua infraestrutura em um datacenter espacial.</p>
+        </div>
+    </header>
+
+    <section id="sobre" class="section">
+        <h2>Quem Somos</h2>
+        <p>
+            Fundada em 2024, a <strong>Space Code LTDA</strong> nasceu com uma missão ousada:
+            desenvolver software resiliente para os ambientes mais extremos do planeta — e fora dele.
+            Após anos atendendo plataformas offshore, bases de pesquisa polar e operações de defesa,
+            fomos selecionados para sermos uma das primeiras empresas do mundo a manter uma
+            <strong>réplica exata de nossa infraestrutura em um datacenter espacial</strong>,
+            garantindo recuperação de desastres com zero emissão de carbono e refrigeração no vácuo.
+        </p>
+        <p>
+            Nossa infraestrutura terrestre roda sobre Windows Server com Active Directory, DNS e IIS,
+            espelhada continuamente para o nosso recovery site orbital.
+        </p>
+    </section>
+
+    <section id="devs" class="section dark">
+        <h2>Nossos Devs</h2>
+        <div class="devs-grid">
+            <div class="dev-card">
+                <img src="img/dev-fabrini.svg" alt="Foto de Fabrini">
+                <h3>Fabrini</h3>
+                <p class="rm">RM 000001</p>
+                <p class="area">Área de interesse: <strong>Back-end &amp; SOA</strong></p>
+            </div>
+            <div class="dev-card">
+                <img src="img/dev-cezar.svg" alt="Foto de Cezar">
+                <h3>Cezar</h3>
+                <p class="rm">RM 000002</p>
+                <p class="area">Área de interesse: <strong>Cybersecurity</strong></p>
+            </div>
+            <div class="dev-card">
+                <img src="img/dev-rodrigo.svg" alt="Foto de Rodrigo Leme">
+                <h3>Rodrigo Leme</h3>
+                <p class="rm">RM 000003</p>
+                <p class="area">Área de interesse: <strong>Data &amp; AI</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section">
+        <h2>Fale Conosco</h2>
+        <form id="form-contato" action="salvar-contato.asp" method="post">
+            <div class="form-row">
+                <label for="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-row">
+                <label for="sobrenome">Sobrenome *</label>
+                <input type="text" id="sobrenome" name="sobrenome" required>
+            </div>
+            <div class="form-row">
+                <label for="mensagem">Mensagem *</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Space Code LTDA — Terra &amp; Órbita Baixa · spacecode.internal</p>
+    </footer>
+
+</body>
+</html>
